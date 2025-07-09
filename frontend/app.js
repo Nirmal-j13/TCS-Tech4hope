@@ -3,7 +3,7 @@
 // --- PouchDB Initialization ---
 // Initialize a PouchDB database named 'employees'
 // This will create an IndexedDB database in the browser.
-const localDb = new PouchDB('employees');
+const db = new PouchDB('employees');
 
 // --- CouchDB Replication (Conceptual) ---
 // IMPORTANT: Replace 'YOUR_COUCHDB_URL' with the actual URL of your CouchDB instance.
