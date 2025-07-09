@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Employee Management</title>
+    <!-- Custom CSS for all styling -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Web App Manifest for PWA features -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/000000/FFFFFF?text=EMP">
+    <meta name="theme-color" content="#4F46E5">
+</head>
+<body class="body-container">
+    <div class="app-container">
+        <h1 class="app-title">Employee Management System</h1>
+
+        <div class="input-grid">
+            <input
+                type="text"
+                id="employeeName"
+                placeholder="Employee Name"
+                class="input-field"
+            >
+            <input
+                type="text"
+                id="employeePosition"
+                placeholder="Position"
+                class="input-field"
+            >
+            <input
+                type="text"
+                id="employeeDepartment"
+                placeholder="Department"
+                class="input-field"
+            >
+            <input
+                type="number"
+                id="employeeSalary"
+                placeholder="Salary"
+                class="input-field"
+            >
+        </div>
+        <button
+            id="addEmployeeBtn"
+            class="add-button"
+        >
+            Add Employee
+        </button>
+
+        <div class="table-container">
+            <table class="employee-table">
+                <thead>
+                    <tr class="table-header-row">
+                        <th class="table-header-cell rounded-tl">Name</th>
+                        <th class="table-header-cell">Position</th>
+                        <th class="table-header-cell">Department</th>
+                        <th class="table-header-cell">Salary</th>
+                        <th class="table-header-cell text-center rounded-tr">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeList" class="table-body">
+                    <!-- Employee items will be dynamically added here by JavaScript -->
+                    <tr>
+                        <td colspan="5" class="loading-cell">Loading employees...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Message box for user feedback (instead of alert) -->
+        <div id="messageBox" class="message-box hidden" role="alert"></div>
+    </div>
+
+    <!-- PouchDB Library -->
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
+    <!-- Main application script -->
+    <script src="app.js"></script>
+</body>
+</html>
