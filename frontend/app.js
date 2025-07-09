@@ -16,7 +16,7 @@ const remoteDb = new PouchDB(remoteCouch);
 function setupReplication() {
     console.log("djfhdjhg")
     if (remoteCouch!==null) {
-        localDb.replicate(remoteDb, {
+        db.replicate(remoteDb, {
             live: true, // Keep replication alive
             retry: true // Retry on failure
         }).on('change', function (info) {
