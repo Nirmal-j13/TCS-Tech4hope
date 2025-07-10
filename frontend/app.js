@@ -11,12 +11,13 @@ const db = new PouchDB('employees');
 // This part is commented out by default because it requires a running CouchDB server.
 // If you have a CouchDB server, uncomment this and provide the correct URL.
 const remoteCouch = 'http://127.0.0.1:5984/employees'; // e.g., 'http://localhost:5984/myemployees'
-const remoteDb = new PouchDB(remoteCouch);
+
 // Function to set up replication
 function setupReplication() {
     console.log("djfhdjhg")
-    if (remoteCouch!==null) {
-        db.replicate(remoteDb, {
+    if (remoteCouch) {
+        const remoteDb = new PouchDB(remoteCouch);
+        db.sync(remoteDb, {
             live: true, // Keep replication alive
             retry: true // Retry on failure
         }).on('change', function (info) {
@@ -231,7 +232,7 @@ async function loadEmployees() {
     try {
         const result = await db.allDocs({
             include_docs: true, // Include the full document
-            descending: false // Show newest first
+            descending: true // Show newest first
         });
         console.log(result)
         employeeList.innerHTML = ''; // Clear existing list
@@ -305,7 +306,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // --- Initial Load ---
-document.addEventListener('DOMContentLoaded', () => {
-    setupReplication();
-    loadEmployees(); // Initial render
+document.addEventListener('DOMContentLoaded', function() {
+  setupReplication();
+ loadEmployees();
 });
